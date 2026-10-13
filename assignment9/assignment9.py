@@ -1,14 +1,16 @@
+import os
 import cv2
 
-# Video filename
-VIDEO_PATH = "cctv.mp4"
+# Automatically locate cctv.mp4 in the same directory as this script file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+VIDEO_PATH = os.path.join(BASE_DIR, "cctv.mp4")
 
 # Open the video
 cap = cv2.VideoCapture(VIDEO_PATH)
 
 if not cap.isOpened():
     raise SystemExit(
-        "Could not open video. Check the filename and path."
+        f"Could not open video at: {VIDEO_PATH}\nCheck that cctv.mp4 is in the same folder."
     )
 
 # Initialise HOG people detector
